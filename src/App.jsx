@@ -4,6 +4,7 @@ import About from "./components/About";
 import Works from "./components/Works";
 import Services from "./components/Services";
 import FAQ from "./components/FAQ";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Works />
         <Services />
         <FAQ />
+        <Analytics />
       </main>
     </div>
   );
