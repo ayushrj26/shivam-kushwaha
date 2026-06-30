@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes roleSlide {
+  0%, 40% {
+    transform: translateY(0);
+  }
+
+  50%, 90% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-role-slide {
+  animation: roleSlide 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes floatOut {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-float-out {
+  animation: floatOut 1s ease forwards;
+}
+
+.tool-card {
+  position: absolute;
+}
+.shine-border {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 320deg,
+    rgba(255, 255, 255, 0.95) 340deg,
+    rgba(180, 210, 255, 1) 350deg,
+    transparent 360deg
+  );
+
+  animation: rotateShine 4s linear infinite;
+}
+
+@keyframes rotateShine {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pill-shine {
+  background: conic-gradient(
+    from 0deg,
+    transparent 40%,
+    rgba(180, 210, 255, 0.3) 50%,
+    white 55%,
+    rgba(180, 210, 255, 0.3) 60%,
+    transparent 70%
+  );
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shine-rotate {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
