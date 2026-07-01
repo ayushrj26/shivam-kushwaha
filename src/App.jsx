@@ -1,25 +1,19 @@
-import Navbar from "./components/Navbar";
-import ShivamHero from "./components/ShivamHero";
-import About from "./components/About";
-import Works from "./components/Works";
-import Services from "./components/Services";
-import FAQ from "./components/FAQ";
-import { Analytics } from "@vercel/analytics/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import ContactPage from "./pages/ContactPage";
+import ScrollToHash from "./components/ScrollToHash";
 
 function App() {
   return (
-    <div className="bg-[#050818] min-h-screen">
-      <Navbar />
+    <BrowserRouter>
+      <ScrollToHash />
 
-      <main className="pt-28">
-        <ShivamHero />
-        <About />
-        <Works />
-        <Services />
-        <FAQ />
-        <Analytics />
-      </main>
-    </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

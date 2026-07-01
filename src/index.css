@@ -99,3 +99,6 @@ body {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+html {
+  scroll-behavior: smooth;
+}

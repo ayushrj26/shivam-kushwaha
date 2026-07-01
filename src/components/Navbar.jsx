@@ -1,4 +1,40 @@
+import { useNavigate } from "react-router-dom";
+
 function Navbar() {
+  const goHome = () => {
+  if (window.location.pathname !== "/") {
+    navigate("/");
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};
+  const navigate = useNavigate();
+  const navItems = [
+  { label: "My Work", id: "works" },
+  { label: "My Services", id: "services" },
+  { label: "Testimonials", id: "testimonials" },
+  { label: "FAQ", id: "faq" },
+  { label: "About Me", id: "about" },
+];
+
+const scrollToSection = (id) => {
+  if (window.location.pathname !== "/") {
+    navigate(`/#${id}`);
+    return;
+  }
+
+  const section = document.getElementById(id);
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-6 py-4">
       <nav
@@ -14,10 +50,13 @@ function Navbar() {
         "
       >
         {/* Left Side */}
-        <div className="flex items-center gap-3">
+        <div
+  onClick={goHome}
+  className="flex items-center gap-3 cursor-pointer"
+>
           <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
             <img
-              src="https://i.pravatar.cc/150?img=12"
+              src="/images/shivampf.png"
               alt="profile"
               className="w-full h-full object-cover"
             />
@@ -38,16 +77,18 @@ function Navbar() {
 
         {/* Center */}
         <ul className="hidden md:flex items-center gap-10">
-  {["My Work", "My Services", "Testimonials", "FAQ", "About Me"].map(
-    (item) => (
-      <li key={item} className="group cursor-pointer h-6 overflow-hidden">
-        <div className="transition-transform duration-300 group-hover:-translate-y-6">
-          <p className="text-gray-300 font-normal h-6">{item}</p>
-          <p className="text-white font-semibold h-6">{item}</p>
-        </div>
-      </li>
-    )
-  )}
+  {navItems.map((item) => (
+    <li
+      key={item.label}
+      onClick={() => scrollToSection(item.id)}
+      className="group cursor-pointer h-6 overflow-hidden"
+    >
+      <div className="transition-transform duration-300 group-hover:-translate-y-6">
+        <p className="text-gray-300 font-normal h-6">{item.label}</p>
+        <p className="text-white font-semibold h-6">{item.label}</p>
+      </div>
+    </li>
+  ))}
 </ul>
 
         {/* Right Side */}
@@ -79,6 +120,7 @@ function Navbar() {
                 }}
                 onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.03)")}
                 onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                onClick={() => navigate("/contact")}
               >
                 Hire Me
               </button>

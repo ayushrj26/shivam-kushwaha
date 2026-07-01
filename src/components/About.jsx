@@ -45,7 +45,7 @@ function About() {
   ];
 
   return (
-    <section className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="about" className="relative py-32 bg-[#050818] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-20 top-20 w-72 h-72 bg-blue-500/20 blur-[140px] rounded-full" />
         <div className="absolute right-20 bottom-20 w-72 h-72 bg-purple-500/20 blur-[140px] rounded-full" />
@@ -116,7 +116,7 @@ function About() {
           />
 
           <img
-            src="https://res.cloudinary.com/dnkycods9/image/upload/v1782841158/shivam_ouzmay.png"
+            src="https://res.cloudinary.com/dnkycods9/image/upload/v1782904690/shivam_c4ajzx.png"
             alt="Shivam"
             className="relative z-20 h-[500px] object-contain drop-shadow-[0_0_40px_rgba(80,100,255,0.4)]"
           />

@@ -89,7 +89,7 @@ function ServiceCard({ service }) {
 
 export default function Services() {
   return (
-    <section className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="services" className="relative py-32 bg-[#050818] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-20 top-20 w-72 h-72 bg-blue-500/20 blur-[140px] rounded-full" />
