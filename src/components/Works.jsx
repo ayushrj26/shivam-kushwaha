@@ -316,7 +316,7 @@ export default function Works() {
   const currentVideos = activeTab === "long" ? LONG_FORM : SHORT_FORM;
 
   return (
-    <section id="works" className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="works" className="relative py-24 bg-[#050818] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-20 top-20 w-72 h-72 bg-blue-500/20 blur-[140px] rounded-full" />
@@ -324,7 +324,7 @@ export default function Works() {
         <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[180px] rounded-full" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Pill Header */}
         <motion.div
           className="flex justify-center mb-8"
@@ -366,7 +366,7 @@ export default function Works() {
           viewport={{ once: true }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
         >
-          <p className="text-gray-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
             A collection of long-form storytelling and high-performing
             short-form edits.
           </p>
@@ -374,7 +374,7 @@ export default function Works() {
 
         {/* Toggle Buttons */}
         <motion.div
-          className="flex justify-center mb-16"
+          className="flex justify-center mb-12"
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -383,8 +383,8 @@ export default function Works() {
           <div className="relative inline-flex rounded-full bg-white/5 border border-white/10 p-1 backdrop-blur-xl">
             {/* Sliding pill */}
             <motion.div
-              className="absolute top-1 bottom-1 w-[145px] rounded-full bg-white"
-              animate={{ x: activeTab === "long" ? 0 : 145 }}
+              className="absolute top-1 bottom-1 w-[130px] rounded-full bg-white"
+              animate={{ x: activeTab === "long" ? 0 : 130 }}
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
             />
 
@@ -394,7 +394,7 @@ export default function Works() {
                 setActiveVideoId(null);
               }}
               className={`
-                relative z-10 w-[145px] py-3 rounded-full font-medium
+                relative z-10 w-[130px] py-2.5 rounded-full font-medium
                 transition-colors duration-300
                 ${activeTab === "long" ? "text-black" : "text-gray-400"}
               `}
@@ -408,7 +408,7 @@ export default function Works() {
                 setActiveVideoId(null);
               }}
               className={`
-                relative z-10 w-[145px] py-3 rounded-full font-medium
+                relative z-10 w-[130px] py-2.5 rounded-full font-medium
                 transition-colors duration-300
                 ${activeTab === "short" ? "text-black" : "text-gray-400"}
               `}
@@ -428,11 +428,11 @@ export default function Works() {
             exit="exit"
             viewport={{ once: true, amount: 0.05 }}
             className={`
-              grid gap-8
+              grid gap-6
               ${
                 activeTab === "long"
                   ? "grid-cols-1 md:grid-cols-2"
-                  : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto"
+                  : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-5xl mx-auto"
               }
             `}
           >

@@ -48,14 +48,14 @@ function About() {
   ];
 
   return (
-    <section id="about" className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="about" className="relative py-24 bg-[#050818] overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-20 top-20 w-72 h-72 bg-blue-500/20 blur-[140px] rounded-full" />
         <div className="absolute right-20 bottom-20 w-72 h-72 bg-purple-500/20 blur-[140px] rounded-full" />
         <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-500/10 blur-[180px] rounded-full" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div className="flex justify-center mb-16">
           <div className="relative rounded-full p-[1px] overflow-hidden">
             <div className="absolute inset-0 rounded-full overflow-hidden">
@@ -78,16 +78,16 @@ function About() {
           </div>
         </div>
 
-        <div className="relative flex justify-center items-center h-[600px] [perspective:1000px]">
-          <div className="absolute w-[550px] h-[550px] rounded-full border border-white/10" />
-          <div className="absolute w-[420px] h-[420px] rounded-full border border-white/10" />
+        <div className="relative flex justify-center items-center h-[500px] [perspective:1000px]">
+          <div className="absolute w-[460px] h-[460px] rounded-full border border-white/10" />
+          <div className="absolute w-[350px] h-[350px] rounded-full border border-white/10" />
 
           {/* Premiere uses old DaVinci rotation */}
           <ToolCard
             name="Premiere Pro"
             subtitle="Video Editing"
             icon="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
-            className="left-30 top-30"
+            className="left-24 top-20"
             rotate="rotate-2"
           />
 
@@ -96,7 +96,7 @@ function About() {
             name="After Effects"
             subtitle="Motion Graphics"
             icon="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
-            className="right-30 top-30"
+            className="right-24 top-20"
             rotate="-rotate-2"
           />
 
@@ -105,7 +105,7 @@ function About() {
             name="DaVinci Resolve"
             subtitle="Color Grading"
             icon="https://upload.wikimedia.org/wikipedia/commons/9/90/DaVinci_Resolve_17_logo.svg"
-            className="left-28 bottom-50"
+            className="left-20 bottom-36"
             rotate="-rotate-2"
           />
 
@@ -114,19 +114,19 @@ function About() {
             name="Photoshop"
             subtitle="Thumbnail Design"
             icon="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
-            className="right-28 bottom-50"
+            className="right-20 bottom-36"
             rotate="rotate-2"
           />
 
           <img
             src="https://res.cloudinary.com/dnkycods9/image/upload/v1782904690/shivam_c4ajzx.png"
             alt="Shivam"
-            className="relative z-20 h-[500px] object-contain drop-shadow-[0_0_40px_rgba(80,100,255,0.4)]"
+            className="relative z-20 h-[420px] object-contain drop-shadow-[0_0_40px_rgba(80,100,255,0.4)]"
           />
         </div>
 
-        <div className="mt-14 flex justify-center">
-          <div className="group relative w-full max-w-6xl rounded-[30px] border border-white/10 bg-[#070d18]/90 backdrop-blur-xl px-8 py-8 overflow-hidden">
+        <div className="mt-10 flex justify-center">
+          <div className="group relative w-full max-w-5xl rounded-[30px] border border-white/10 bg-[#070d18]/90 backdrop-blur-xl px-8 py-8 overflow-hidden">
             {/* DOT PATTERN BACKGROUND - PUT YOUR IMAGE PATH HERE */}
             <img
               src="/images/dot-pattern.avif"
@@ -147,12 +147,12 @@ function About() {
                     </span>
 
                     <div>
-                      <h2 className="text-3xl md:text-4xl font-bold text-gray-100 leading-tight">
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-100 leading-tight">
                         Hello, I am{" "}
                         <span className="text-blue-400">Shivam</span>
                       </h2>
 
-                      <p className="mt-2 text-gray-400 text-lg">
+                      <p className="mt-2 text-gray-400 text-base">
                         Welcome to my creative space
                       </p>
                     </div>

@@ -104,10 +104,10 @@ function ServiceCard({ service }) {
       />
 
       {/* Card Content */}
-      <div className="relative z-10 h-full rounded-[28px] bg-[#091120]/95 border border-white/10 backdrop-blur-xl p-6">
+      <div className="relative z-10 h-full rounded-[28px] bg-[#091120]/95 border border-white/10 backdrop-blur-xl p-5">
         {/* Icon */}
         <motion.div
-          className="w-14 h-14 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-2xl mb-5"
+          className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-xl mb-4"
           variants={{
             hidden: { scale: 1, rotate: 0 },
             visible: { scale: 1, rotate: 0 },
@@ -123,7 +123,7 @@ function ServiceCard({ service }) {
 
         {/* Title */}
         <motion.h3
-          className="text-white text-xl font-semibold mb-3"
+          className="text-white text-lg font-semibold mb-2.5"
           variants={{
             hidden: { color: "#ffffff" },
             visible: { color: "#ffffff" },
@@ -135,7 +135,7 @@ function ServiceCard({ service }) {
 
         {/* Description */}
         <motion.p
-          className="text-gray-400 text-sm leading-relaxed mb-6"
+          className="text-gray-400 text-[13px] leading-relaxed mb-5"
           variants={{
             hidden: { color: "#9ca3af" },
             visible: { color: "#9ca3af" },
@@ -176,7 +176,7 @@ function ServiceCard({ service }) {
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="services" className="relative py-24 bg-[#050818] overflow-hidden">
       {/* DOT PATTERN BACKGROUND */}
       <img
         src="/images/dot-pattern.avif"
@@ -190,7 +190,7 @@ export default function Services() {
         <div className="absolute right-20 bottom-20 w-72 h-72 bg-purple-500/20 blur-[140px] rounded-full" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         {/* Services Pill */}
         <motion.div
           className="flex justify-center mb-8"
@@ -225,13 +225,13 @@ export default function Services() {
 
         {/* Description */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
             From short-form viral content to cinematic storytelling — I provide
             complete editing solutions tailored to your brand and audience.
           </p>
@@ -239,7 +239,7 @@ export default function Services() {
 
         {/* Grid 1 */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -252,7 +252,7 @@ export default function Services() {
 
         {/* Grid 2 */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

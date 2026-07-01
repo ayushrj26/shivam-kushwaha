@@ -58,8 +58,8 @@ const WORK_CARDS = [
   { id: 8, videoUrl: "https://res.cloudinary.com/dnkycods9/video/upload/v1782800409/10_k2prtb.mp4", thumbUrl: "https://res.cloudinary.com/dnkycods9/image/upload/v1782840440/10_walxej.gif" },
 ];
 
-const CARD_W = 255;
-const CARD_H = 453;
+const CARD_W = 220;
+const CARD_H = 390;
 const GAP = 20;
 const SPEED = 0.6;
 
@@ -357,11 +357,11 @@ export default function ShivamHero() {
   initial="hidden"
   animate="visible"
   style={{
-    fontSize: "clamp(1.9rem,4.2vw,3.6rem)",
+    fontSize: "clamp(1.6rem,3.6vw,3.1rem)",
     fontWeight: 700,
     color: "#e8eeff",
     letterSpacing: "-0.02em",
-    maxWidth: 780,
+    maxWidth: 700,
     lineHeight: 1.15,
     margin: "0 0 1.1rem",
   }}
@@ -383,9 +383,9 @@ export default function ShivamHero() {
   initial="hidden"
   animate="visible"
   style={{
-    fontSize: "clamp(0.9rem,1.5vw,1.05rem)",
+    fontSize: "clamp(0.82rem,1.35vw,0.95rem)",
     color: "#7a8fb8",
-    maxWidth: 540,
+    maxWidth: 480,
     lineHeight: 1.7,
     margin: "0 0 2rem",
   }}

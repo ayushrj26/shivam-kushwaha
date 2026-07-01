@@ -74,16 +74,16 @@ function FAQItem({ item, isOpen, onClick }) {
       {/* Question */}
       <button
         onClick={onClick}
-        className="w-full px-7 py-5 flex justify-between items-center text-left cursor-pointer"
+        className="w-full px-6 py-4 flex justify-between items-center text-left cursor-pointer"
       >
-        <span className="text-white text-medium font-semibold">
+        <span className="text-white text-[15px] font-semibold">
           {item.question}
         </span>
 
         {/* Arrow */}
         <div
           className={`
-            w-10 h-10 rounded-full
+            w-8 h-8 rounded-full
             bg-white/[0.04]
             border border-white/10
             flex items-center justify-center
@@ -111,7 +111,7 @@ function FAQItem({ item, isOpen, onClick }) {
       {/* Divider */}
       <div
         className={`
-          mx-7 h-px bg-white/10 transition-all duration-300
+          mx-6 h-px bg-white/10 transition-all duration-300
           ${isOpen ? "opacity-100" : "opacity-0"}
         `}
       />
@@ -124,7 +124,7 @@ function FAQItem({ item, isOpen, onClick }) {
         `}
       >
         <div className="overflow-hidden">
-          <p className="px-7 py-5 text-gray-400 text-base leading-relaxed">
+          <p className="px-6 py-4 text-gray-400 text-[13.5px] leading-relaxed">
             {item.answer}
           </p>
         </div>
@@ -137,14 +137,14 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="relative py-32 bg-[#050818] overflow-hidden">
+    <section id="faq" className="relative py-24 bg-[#050818] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-20 top-20 w-72 h-72 bg-blue-500/20 blur-[140px] rounded-full" />
         <div className="absolute right-20 bottom-20 w-72 h-72 bg-purple-500/20 blur-[140px] rounded-full" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-10">
+      <div className="relative z-10 max-w-3xl mx-auto px-6">
         {/* FAQ Pill */}
         <motion.div
           className="flex justify-center mb-8 "
@@ -185,20 +185,20 @@ export default function FAQ() {
 
         {/* Description */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-400 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
             Answers to common questions about my workflow, delivery, and collaboration process.
           </p>
         </motion.div>
 
         {/* FAQ List */}
         <motion.div
-          className="space-y-4"
+          className="space-y-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

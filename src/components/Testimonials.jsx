@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 function TestimonialCard({ name, role, text }) {
   return (
     <motion.div
-      className="flex-shrink-0 w-[340px] rounded-3xl p-[1px] bg-gradient-to-r from-white/10 via-blue-300/20 to-white/10"
+      className="flex-shrink-0 w-[300px] rounded-3xl p-[1px] bg-gradient-to-r from-white/10 via-blue-300/20 to-white/10"
       whileHover={{
         y: -8,
         scale: 1.02,
         transition: { type: "spring", stiffness: 400, damping: 20 },
       }}
     >
-      <div className="h-full rounded-3xl bg-[#0a1022]/95 backdrop-blur-2xl border border-white/10 px-5 py-5">
+      <div className="h-full rounded-3xl bg-[#0a1022]/95 backdrop-blur-2xl border border-white/10 p-4.5">
         
         {/* Name + Role */}
         <div className="mb-4">
@@ -37,7 +37,7 @@ function TestimonialCard({ name, role, text }) {
         <div className="h-px w-full bg-white/10 mb-4" />
 
         {/* Review */}
-        <p className="text-gray-300 text-sm leading-relaxed">
+        <p className="text-gray-300 text-[13px] leading-relaxed">
           {text}
         </p>
       </div>
@@ -95,7 +95,7 @@ function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative py-28 bg-[#050818] overflow-hidden"
+      className="relative py-22 bg-[#050818] overflow-hidden"
     >
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -144,7 +144,7 @@ function Testimonials() {
 
         {/* Row 1 */}
         <motion.div
-          className="relative overflow-hidden mb-6"
+          className="relative overflow-hidden mb-5"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -153,7 +153,7 @@ function Testimonials() {
           <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
 
-          <div className="flex gap-6 animate-marquee">
+          <div className="flex gap-5 animate-marquee">
             {[...row1, ...row1].map((item, index) => (
               <TestimonialCard key={index} {...item} />
             ))}
@@ -171,7 +171,7 @@ function Testimonials() {
           <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
           <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
 
-          <div className="flex gap-6 animate-marquee-reverse">
+          <div className="flex gap-5 animate-marquee-reverse">
             {[...row2, ...row2].map((item, index) => (
               <TestimonialCard key={index} {...item} />
             ))}
