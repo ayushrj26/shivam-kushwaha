@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const FAQS = [
   {
     question: "What types of videos do you edit?",
+    border: "",
     answer:
       "I specialize in short-form content, talking-head videos, documentaries, motion graphics, cinematic edits, and social media reels optimized for engagement.",
   },
@@ -33,9 +35,32 @@ const FAQS = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 18,
+    },
+  },
+};
+
 function FAQItem({ item, isOpen, onClick }) {
   return (
-    <div
+    <motion.div
+      variants={itemVariants}
       className="
         rounded-[28px]
         border border-white/10
@@ -49,7 +74,7 @@ function FAQItem({ item, isOpen, onClick }) {
       {/* Question */}
       <button
         onClick={onClick}
-        className="w-full px-7 py-5 flex justify-between items-center text-left"
+        className="w-full px-7 py-5 flex justify-between items-center text-left cursor-pointer"
       >
         <span className="text-white text-medium font-semibold">
           {item.question}
@@ -104,7 +129,7 @@ function FAQItem({ item, isOpen, onClick }) {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -121,7 +146,13 @@ export default function FAQ() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-10">
         {/* FAQ Pill */}
-        <div className="flex justify-center mb-8 ">
+        <motion.div
+          className="flex justify-center mb-8 "
+          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        >
           <div className="relative inline-block">
             <div className="relative rounded-full p-[2px] bg-white/5 overflow-hidden inline-block">
               {/* Rotating Shine */}
@@ -137,10 +168,10 @@ export default function FAQ() {
 
               {/* Pill Body */}
               <div
-  className="
-    relative z-10 px-8 py-2.5 rounded-full
-    text-[#08091c] font-semibold text-base tracking-wide
-  "
+                className="
+                  relative z-10 px-8 py-2.5 rounded-full
+                  text-[#08091c] font-semibold text-base tracking-wide
+                "
                 style={{
                   background:
                     "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
@@ -150,17 +181,29 @@ export default function FAQ() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Description */}
-        <div className="text-center mb-14">
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        >
           <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
             Answers to common questions about my workflow, delivery, and collaboration process.
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ List */}
-        <div className="space-y-4">
+        <motion.div
+          className="space-y-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {FAQS.map((item, index) => (
             <FAQItem
               key={index}
@@ -171,7 +214,7 @@ export default function FAQ() {
               }
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

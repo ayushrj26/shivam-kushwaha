@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* -------------------- PLACEHOLDER DATA -------------------- */
 /* Replace with your Cloudinary links later */
@@ -129,9 +130,45 @@ const SHORT_FORM = [
   },
 ];
 
+/* -------------------- ANIMATION VARIANTS -------------------- */
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.97 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.06,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+  exit: {
+    opacity: 0,
+    y: -16,
+    scale: 0.97,
+    transition: { duration: 0.25, ease: "easeIn" },
+  },
+};
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.03,
+    },
+  },
+};
+
 /* -------------------- VIDEO CARD -------------------- */
 
-function VideoCard({ item, isShort = false, activeVideoId, setActiveVideoId }) {
+function VideoCard({ item, isShort = false, activeVideoId, setActiveVideoId, index }) {
   const previewRef = useRef(null);
   const playerRef = useRef(null);
 
@@ -162,14 +199,17 @@ function VideoCard({ item, isShort = false, activeVideoId, setActiveVideoId }) {
   };
 
   return (
-    <div
+    <motion.div
+      custom={index}
+      variants={cardVariants}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onContextMenu={(e) => e.preventDefault()}
-      className="
-        group relative rounded-3xl p-[1.5px] overflow-hidden
-        transition-all duration-500 hover:-translate-y-2
-      "
+      whileHover={{
+        y: -8,
+        transition: { type: "spring", stiffness: 300, damping: 22 },
+      }}
+      className="group relative rounded-3xl p-[1.5px] overflow-hidden"
     >
       {/* Animated Border */}
       <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -187,46 +227,56 @@ function VideoCard({ item, isShort = false, activeVideoId, setActiveVideoId }) {
         {!opened ? (
           <>
             {/* Thumbnail */}
-            <img
+            <motion.img
               src={item.thumbUrl}
               alt=""
-              className={`
-                absolute inset-0 w-full h-full object-cover
-                transition-opacity duration-300
-                ${hovered ? "opacity-0" : "opacity-100"}
-              `}
+              animate={{ opacity: hovered ? 0 : 1 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
             {/* Hover Preview */}
             {hovered && (
-              <video
+              <motion.video
                 ref={previewRef}
                 src={item.videoUrl}
                 muted
                 loop
                 playsInline
                 preload="none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             )}
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/30" />
+            <motion.div
+              className="absolute inset-0 bg-black/30"
+              animate={{ opacity: hovered ? 0.15 : 0.3 }}
+              transition={{ duration: 0.3 }}
+            />
 
             {/* Play Button */}
             <button
               onClick={openPlayer}
               className="absolute inset-0 flex items-center justify-center"
             >
-              <div
+              <motion.div
                 className="
                   w-20 h-20 rounded-full
                   bg-white/10 backdrop-blur-xl
                   border border-white/20
                   flex items-center justify-center
                   shadow-lg shadow-black/30
-                  hover:scale-110 transition-all duration-300
                 "
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{
+                  scale: hovered ? 1.08 : 1,
+                  opacity: hovered ? 1 : 0.7,
+                }}
+                transition={{ type: "spring", stiffness: 350, damping: 22 }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -236,23 +286,29 @@ function VideoCard({ item, isShort = false, activeVideoId, setActiveVideoId }) {
                 >
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </div>
+              </motion.div>
             </button>
           </>
         ) : (
-          <video
+          <motion.video
             ref={playerRef}
             src={item.videoUrl}
             controls
             controlsList="nodownload nofullscreen noremoteplayback"
             disablePictureInPicture
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             className="w-full h-full object-cover"
           />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
+
+/* -------------------- WORKS SECTION -------------------- */
+
 export default function Works() {
   const [activeTab, setActiveTab] = useState("long");
   const [activeVideoId, setActiveVideoId] = useState(null);
@@ -270,9 +326,14 @@ export default function Works() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Pill Header */}
-        <div className="flex justify-center mb-8">
+        <motion.div
+          className="flex justify-center mb-8"
+          initial={{ opacity: 0, y: -18, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100, damping: 16 }}
+        >
           <div className="relative inline-block">
-            {/* Outer Border */}
             <div className="relative rounded-full p-[2px] bg-white/5 overflow-hidden inline-block">
               {/* Rotating Shine */}
               <div
@@ -284,95 +345,109 @@ export default function Works() {
                   animation: "shine-rotate 2.4s linear infinite",
                 }}
               />
-
               {/* Pill Body */}
               <div
-                className="
-    relative z-10 px-8 py-2.5 rounded-full
-    text-[#08091c] font-semibold text-base tracking-wide
-  "
+                className="relative z-10 px-8 py-2.5 rounded-full text-[#08091c] font-semibold text-base tracking-wide"
                 style={{
-                  background:
-                    "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
+                  background: "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
                 }}
               >
                 My Works
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Small Description */}
-        <div className="text-center mb-12">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+        >
           <p className="text-gray-500 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
             A collection of long-form storytelling and high-performing
             short-form edits.
           </p>
-        </div>
+        </motion.div>
+
         {/* Toggle Buttons */}
-        <div className="flex justify-center mb-16">
+        <motion.div
+          className="flex justify-center mb-16"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.14 }}
+        >
           <div className="relative inline-flex rounded-full bg-white/5 border border-white/10 p-1 backdrop-blur-xl">
-            {/* Sliding pill with bounce */}
-            <div
-              className={`
-        absolute top-1 bottom-1 w-[145px] rounded-full bg-white
-        transition-all duration-500
-        ${
-          activeTab === "long"
-            ? "left-1 scale-100"
-            : "translate-x-[145px] scale-[1.03]"
-        }
-      `}
-              style={{
-                transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-              }}
+            {/* Sliding pill */}
+            <motion.div
+              className="absolute top-1 bottom-1 w-[145px] rounded-full bg-white"
+              animate={{ x: activeTab === "long" ? 0 : 145 }}
+              transition={{ type: "spring", stiffness: 300, damping: 28 }}
             />
 
             <button
-              onClick={() => setActiveTab("long")}
+              onClick={() => {
+                setActiveTab("long");
+                setActiveVideoId(null);
+              }}
               className={`
-        relative z-10 w-[145px] py-3 rounded-full font-medium
-        transition-all duration-300
-        ${activeTab === "long" ? "text-black" : "text-gray-400"}
-      `}
+                relative z-10 w-[145px] py-3 rounded-full font-medium
+                transition-colors duration-300
+                ${activeTab === "long" ? "text-black" : "text-gray-400"}
+              `}
             >
               Long Form
             </button>
 
             <button
-              onClick={() => setActiveTab("short")}
+              onClick={() => {
+                setActiveTab("short");
+                setActiveVideoId(null);
+              }}
               className={`
-        relative z-10 w-[145px] py-3 rounded-full font-medium
-        transition-all duration-300
-        ${activeTab === "short" ? "text-black" : "text-gray-400"}
-      `}
+                relative z-10 w-[145px] py-3 rounded-full font-medium
+                transition-colors duration-300
+                ${activeTab === "short" ? "text-black" : "text-gray-400"}
+              `}
             >
               Short Form
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Grid */}
-        <div
-          className={`
-    grid gap-8
-    ${
-      activeTab === "long"
-        ? "grid-cols-1 md:grid-cols-2"
-        : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto"
-    }
-  `}
-        >
-          {currentVideos.map((item) => (
-            <VideoCard
-              key={item.id}
-              item={item}
-              isShort={activeTab === "short"}
-              activeVideoId={activeVideoId}
-              setActiveVideoId={setActiveVideoId}
-            />
-          ))}
-        </div>
+        {/* Grid — stagger triggers on scroll into view, AnimatePresence handles tab-switch exit */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="visible"
+            exit="exit"
+            viewport={{ once: true, amount: 0.05 }}
+            className={`
+              grid gap-8
+              ${
+                activeTab === "long"
+                  ? "grid-cols-1 md:grid-cols-2"
+                  : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto"
+              }
+            `}
+          >
+            {currentVideos.map((item, i) => (
+              <VideoCard
+                key={item.id}
+                item={item}
+                index={i}
+                isShort={activeTab === "short"}
+                activeVideoId={activeVideoId}
+                setActiveVideoId={setActiveVideoId}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

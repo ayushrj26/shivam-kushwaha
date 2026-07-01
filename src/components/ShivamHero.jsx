@@ -1,5 +1,31 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      delay,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 // 👉 Paste each brand's uploaded Cloudinary logo link into `logoUrl` below.
 const BRANDS = [
   { id: 1, name: "NxgSecure", logoUrl: "https://res.cloudinary.com/dnkycods9/image/upload/v1782805405/NxgSecure_jcw0mb.png" },
@@ -213,6 +239,7 @@ function VideoCard({ card, onHoverChange }) {
 }
 
 export default function ShivamHero() {
+  const navigate = useNavigate();
   const trackRef = useRef(null);
   const scrollPos = useRef(0);
   const carouselHovered = useRef(false);
@@ -299,22 +326,46 @@ export default function ShivamHero() {
       }} />
 
       {/* ── Hero Text ── */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 pt-16 pb-4">
+      <motion.div
+  initial="hidden"
+  animate="visible"
+  className="relative z-10 flex flex-col items-center text-center px-4 pt-16 pb-4"
+>
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full text-s mb-8"
-          style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.13)", color: "#c5d0f0" }}>
+        <motion.div
+  variants={fadeUp}
+  custom={0.1}
+  initial="hidden"
+  animate="visible"
+  className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full text-s mb-8"
+  style={{
+    background: "rgba(255,255,255,0.07)",
+    border: "1px solid rgba(255,255,255,0.13)",
+    color: "#c5d0f0"
+  }}
+>
           <span className="w-2.5 h-2.5 rounded-full"
             style={{ background: "#4ade80", boxShadow: "0 0 6px #4ade80", flexShrink: 0 }} />
           ✦ Available for new projects
-        </div>
+        </motion.div>
 
         {/* Headline */}
-        <h1 style={{
-          fontSize: "clamp(1.9rem,4.2vw,3.6rem)", fontWeight: 700,
-          color: "#e8eeff", letterSpacing: "-0.02em", maxWidth: 780,
-          lineHeight: 1.15, margin: "0 0 1.1rem",
-        }}>
+        <motion.h1
+  variants={fadeUp}
+  custom={0.25}
+  initial="hidden"
+  animate="visible"
+  style={{
+    fontSize: "clamp(1.9rem,4.2vw,3.6rem)",
+    fontWeight: 700,
+    color: "#e8eeff",
+    letterSpacing: "-0.02em",
+    maxWidth: 780,
+    lineHeight: 1.15,
+    margin: "0 0 1.1rem",
+  }}
+>
           I Turn Raw Footage Into{" "}
           <span style={{
             background: "linear-gradient(90deg,#6b8fff,#a78bfa 60%,#c4b5fd)",
@@ -323,19 +374,40 @@ export default function ShivamHero() {
             Viral Content
           </span>{" "}
           That Converts
-        </h1>
+        </motion.h1>
 
         {/* Sub */}
-        <p style={{
-          fontSize: "clamp(0.9rem,1.5vw,1.05rem)", color: "#7a8fb8",
-          maxWidth: 540, lineHeight: 1.7, margin: "0 0 2rem",
-        }}>
+        <motion.p
+  variants={fadeUp}
+  custom={0.4}
+  initial="hidden"
+  animate="visible"
+  style={{
+    fontSize: "clamp(0.9rem,1.5vw,1.05rem)",
+    color: "#7a8fb8",
+    maxWidth: 540,
+    lineHeight: 1.7,
+    margin: "0 0 2rem",
+  }}
+>
           From cinematic edits to high-retention reels, I help creators and brands
           boost engagement with scroll-stopping videos that tell powerful stories.
-        </p>
+        </motion.p>
 
         {/* Buttons */}
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
+        <motion.div
+  variants={fadeUp}
+  custom={0.55}
+  initial="hidden"
+  animate="visible"
+  style={{
+    display: "flex",
+    gap: 14,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center"
+  }}
+>
 
           {/* Shine CTA */}
           <div style={{ position: "relative", display: "inline-block" }}>
@@ -351,44 +423,58 @@ export default function ShivamHero() {
                 animation: "shine-rotate 2.4s linear infinite",
                 borderRadius: "50%", pointerEvents: "none",
               }} />
-              <button
+              <motion.button
                 style={{
                   position: "relative", zIndex: 1, padding: "12px 32px",
                   borderRadius: 9999,
                   background: "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
                   color: "#08091c", fontWeight: 600, fontSize: "0.92rem",
                   border: "none", cursor: "pointer", whiteSpace: "nowrap",
-                  transition: "transform 0.18s ease",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.03)")}
-                onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                onClick={() => navigate("/contact")}
               >
                 Place Your Order
-              </button>
+              </motion.button>
             </div>
           </div>
 
           {/* Ghost */}
-          <button
+          <motion.button
             style={{
               padding: "12px 26px", borderRadius: 9999, background: "transparent",
               color: "#c5d0f0", fontWeight: 600, fontSize: "0.92rem",
               border: "1px solid rgba(255,255,255,0.2)", cursor: "pointer",
-              whiteSpace: "nowrap", transition: "all 0.2s ease",
+              whiteSpace: "nowrap",
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.34)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; }}
+            whileHover={{
+              scale: 1.04,
+              background: "rgba(255,255,255,0.07)",
+              borderColor: "rgba(255,255,255,0.34)",
+            }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            onClick={() => {
+              const element = document.getElementById("works");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
           >
             See My Works
-          </button>
-        </div>
-      </div>
+          </motion.button>
+        </motion.div>
+      </motion.div>
 
       {/* ── Carousel ── */}
-      <div
-        className="relative z-10 mt-8 mb-4"
-        style={{ overflow: "hidden" }}
-      >
+      <motion.div
+  className="relative z-10 mt-8 mb-4"
+  variants={scaleIn}
+  initial="hidden"
+  animate="visible"
+>
         {/* Edge fades */}
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 100, zIndex: 2, pointerEvents: "none", background: "linear-gradient(to right,#050818,transparent)" }} />
         <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 100, zIndex: 2, pointerEvents: "none", background: "linear-gradient(to left,#050818,transparent)" }} />
@@ -401,11 +487,22 @@ export default function ShivamHero() {
             <VideoCard key={`${card.id}-${i}`} card={card} onHoverChange={handleCardHoverChange} />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* ── Worked for brands ── */}
-      <div className="relative z-10 mt-auto py-10"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <motion.div
+  className="relative z-10 mt-auto py-10"
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 1,
+    delay: 0.8,
+    ease: [0.22, 1, 0.36, 1]
+  }}
+  style={{
+    borderTop: "1px solid rgba(255,255,255,0.06)"
+  }}
+>
         <p style={{
           textAlign: "center", fontSize: 15, fontWeight: 600,
           letterSpacing: "0.04em", color: "rgba(220,228,255,0.85)",
@@ -442,7 +539,7 @@ export default function ShivamHero() {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

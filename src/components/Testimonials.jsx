@@ -1,6 +1,15 @@
+import { motion } from "framer-motion";
+
 function TestimonialCard({ name, role, text }) {
   return (
-    <div className="flex-shrink-0 w-[340px] rounded-3xl p-[1px] bg-gradient-to-r from-white/10 via-blue-300/20 to-white/10">
+    <motion.div
+      className="flex-shrink-0 w-[340px] rounded-3xl p-[1px] bg-gradient-to-r from-white/10 via-blue-300/20 to-white/10"
+      whileHover={{
+        y: -8,
+        scale: 1.02,
+        transition: { type: "spring", stiffness: 400, damping: 20 },
+      }}
+    >
       <div className="h-full rounded-3xl bg-[#0a1022]/95 backdrop-blur-2xl border border-white/10 px-5 py-5">
         
         {/* Name + Role */}
@@ -32,7 +41,7 @@ function TestimonialCard({ name, role, text }) {
           {text}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -96,8 +105,13 @@ function Testimonials() {
 
       <div className="relative z-10">
         {/* Pill */}
-        {/* FAQ Pill */}
-        <div className="flex justify-center mb-8 ">
+        <motion.div
+          className="flex justify-center mb-8 "
+          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        >
           <div className="relative inline-block">
             <div className="relative rounded-full p-[2px] bg-white/5 overflow-hidden inline-block">
               {/* Rotating Shine */}
@@ -113,10 +127,10 @@ function Testimonials() {
 
               {/* Pill Body */}
               <div
-  className="
-    relative z-10 px-8 py-2.5 rounded-full
-    text-[#08091c] font-semibold text-base tracking-wide
-  "
+                className="
+                  relative z-10 px-8 py-2.5 rounded-full
+                  text-[#08091c] font-semibold text-base tracking-wide
+                "
                 style={{
                   background:
                     "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
@@ -126,31 +140,43 @@ function Testimonials() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Row 1 */}
-        <div className="relative overflow-hidden mb-6">
-  <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
-  <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
+        <motion.div
+          className="relative overflow-hidden mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
 
-  <div className="flex gap-6 animate-marquee">
-    {[...row1, ...row1].map((item, index) => (
-      <TestimonialCard key={index} {...item} />
-    ))}
-  </div>
-</div>
+          <div className="flex gap-6 animate-marquee">
+            {[...row1, ...row1].map((item, index) => (
+              <TestimonialCard key={index} {...item} />
+            ))}
+          </div>
+        </motion.div>
 
         {/* Row 2 */}
-        <div className="relative overflow-hidden">
-  <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
-  <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
+        <motion.div
+          className="relative overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        >
+          <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-[#050818] to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-[#050818] to-transparent pointer-events-none" />
 
-  <div className="flex gap-6 animate-marquee-reverse">
-    {[...row2, ...row2].map((item, index) => (
-      <TestimonialCard key={index} {...item} />
-    ))}
-  </div>
-</div>
+          <div className="flex gap-6 animate-marquee-reverse">
+            {[...row2, ...row2].map((item, index) => (
+              <TestimonialCard key={index} {...item} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

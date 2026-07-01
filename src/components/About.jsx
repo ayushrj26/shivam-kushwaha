@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 function ToolCard({ name, icon, subtitle, className = "", rotate = "" }) {
   return (
     <div
@@ -36,6 +38,7 @@ function ToolCard({ name, icon, subtitle, className = "", rotate = "" }) {
 }
 
 function About() {
+  const navigate = useNavigate();
   const services = [
     "Documentary Edits",
     "Cinematic Edits",
@@ -190,6 +193,7 @@ function About() {
                 }}
                 onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.03)")}
                 onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")}
+                onClick={() => navigate("/contact")}
               >
                 Place Your Order
               </button>

@@ -6,6 +6,7 @@ import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 import { Analytics } from "@vercel/analytics/react";
+import Footer from "../components/Footer";
 
 function HomePage() {
   return (
@@ -20,6 +21,7 @@ function HomePage() {
         <Testimonials />
         <FAQ />
         <Analytics />
+        <Footer />
       </main>
     </div>
   );
