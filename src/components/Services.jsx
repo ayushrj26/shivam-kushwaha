@@ -117,7 +117,7 @@ export default function Services() {
                     "linear-gradient(160deg,#c8d4f8,#a8b8f0 45%,#8faae8)",
                 }}
               >
-                Services
+                What I Offer
               </div>
             </div>
           </div>

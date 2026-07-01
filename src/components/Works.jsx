@@ -14,7 +14,7 @@ const LONG_FORM = [
   {
     id: 2,
     videoUrl:
-      "https://res.cloudinary.com/dnkycods9/video/upload/v1782855192/6_xz0tyq.mp4",
+      "https://res.cloudinary.com/dnkycods9/video/upload/v1782908119/long_6_re_swzeed.mp4",
     thumbUrl:
       "https://res.cloudinary.com/dnkycods9/image/upload/v1782903854/long_6_bhmbhd.png",
   },
@@ -42,7 +42,7 @@ const LONG_FORM = [
   {
     id: 6,
     videoUrl:
-      "https://drive.google.com/file/d/129wS2TYWSzCjPKkT_fYQv03yTZfUslKN/preview",
+      "https://res.cloudinary.com/dnkycods9/video/upload/v1782908125/long_5_re_vihqtc.mp4",
     thumbUrl:
       "https://res.cloudinary.com/dnkycods9/image/upload/v1782903853/long_5_pnljw6.png",
   },

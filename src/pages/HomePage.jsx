@@ -3,6 +3,7 @@ import ShivamHero from "../components/ShivamHero";
 import About from "../components/About";
 import Works from "../components/Works";
 import Services from "../components/Services";
+import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -16,6 +17,7 @@ function HomePage() {
         <About />
         <Works />
         <Services />
+        <Testimonials />
         <FAQ />
         <Analytics />
       </main>

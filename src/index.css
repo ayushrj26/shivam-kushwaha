@@ -37,6 +37,20 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+.animate-marquee-reverse {
+  width: max-content;
+  animation: marquee-reverse 27s linear infinite;
+}
+
+
 @keyframes floatOut {
   from {
     opacity: 0;
